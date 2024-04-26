@@ -16,6 +16,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                     'name' => $row['NamaProduk'],
                     'price' => $row['HargaSatuan'],
                     'gambar' => $row['GambarProduk'],
+                    'id'=> $row['ProdukID']
                    
                 );
                     $ambilidproduk =$id;

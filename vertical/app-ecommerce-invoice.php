@@ -2,12 +2,12 @@
 session_start();
 include 'koneksi.php';
 ?>
-
 <!DOCTYPE html>
 <html lang="en">
-    <?php
-    include 'header.php';
-    ?>
+    
+<?php
+include 'header.php';
+?>
 
     <body>
 
@@ -25,7 +25,7 @@ include 'koneksi.php';
                             <h4 class="page-title mb-2"><i class="mdi mdi-receipt mr-2"></i>Invoice</h4>  
                             <div class="">
                                 <ol class="breadcrumb">
-                                    <li class="breadcrumb-item"><a href="javascript:void(0);">Makan Terus</a></li>
+                                    <li class="breadcrumb-item"><a href="javascript:void(0);">Frogetor</a></li>
                                     <li class="breadcrumb-item"><a href="javascript:void(0);">Pages</a></li>
                                     <li class="breadcrumb-item active">Invoice</li>
                                 </ol>
@@ -41,7 +41,9 @@ include 'koneksi.php';
             <div class="page-wrapper-inner">
 
                 <!-- Left Sidenav -->
-                <?php include 'menu.php'; ?>
+                <?php
+                include 'menu.php';
+                ?>
                 <!-- end left-sidenav-->
 
                 <!-- Page Content-->
@@ -62,8 +64,8 @@ include 'koneksi.php';
                                                     <li class="list-inline-item">
                                                         <div class="pl-3">
                                                             <i class="mdi mdi-web"></i>
-                                                            <p class="text-muted mb-0">www.MakanTerus.com</p>
-                                                            <p class="text-muted mb-0">www.MakanTerus1.com</p>
+                                                            <p class="text-muted mb-0">www.abcdefghijklmno.com</p>
+                                                            <p class="text-muted mb-0">www.qrstuvwxyz.com</p>
                                                         </div>                                                
                                                     </li>
                                                     <li class="list-inline-item">
@@ -76,44 +78,21 @@ include 'koneksi.php';
                                                     <li class="list-inline-item">
                                                         <div class="pl-3">
                                                             <i class="mdi mdi-map-marker"></i>
-                                                            <p class="text-muted mb-0">Karawaci,</p>
-                                                            <p class="text-muted mb-0">Tangerang, 1502 Indonesia.</p>
+                                                            <p class="text-muted mb-0">2821 Kensington Road,</p>
+                                                            <p class="text-muted mb-0">Avondale Estates, GA 30002 USA.</p>
                                                         </div>
                                                     </li>
                                                 </ul>
                                             </div>
                                         </div> 
                                     </div><!--end card-body-->
-                                                
                                     <div class="card-body">
                                         <div class="row">
-                                            <?php
-                                                $querytransaksi = mysqli_query($koneksi,"SELECT * from transaksi");
-                                                while($data= mysqli_fetch_array($querytransaksi)){
-                                            ?>
                                             <div class="col-md-3">
-                                                
                                                 <div class="">
-                                                    <h6 class="mb-0"  ><b>Order Date :</b>                                                
-                                                        <b id="currentdate">
-                                                            <script>const curdate = new Date().toLocaleDateString()
-                                                            document.getElementById("currentdate").innerHTML = curdate
-                                                            </script>
-                                                        </b>
-                                                    </h6>
-                                                    <h6><b>Order ID :</b> 
-                                                    <h6>
-                                                    <?php
-                                                    if(isset($_GET["transaksi"])){
-                                                        
-                                                    }
-
-
-                                                     ?>
-                                                    </h6>
-                                                </h6>
+                                                    <h6 class="mb-0"><b>Order Date :</b> 11/09/2018</h6>
+                                                    <h6><b>Order ID :</b> # 23654789</h6>
                                                 </div>
-                                               
                                             </div>
                                             <div class="col-md-3">                                            
                                                 <div class="float-left">
@@ -145,8 +124,7 @@ include 'koneksi.php';
                                                     <p class="mb-0 text-muted">Companyaccountpaypal@gmai.com</p>
                                                     <p class="mb-0 text-muted">Visa, Master Card, Chaque</p>
                                                 </div>                                              
-                                            </div>   
-                                             <?php }?>                                         
+                                            </div>                                            
                                         </div>
 
                                         <div class="row">
@@ -163,40 +141,16 @@ include 'koneksi.php';
                                                             </tr>
                                                         </thead>
                                                         <tbody>
+                                                            <?php
+                                                            $mmm = mysqli_query($koneksi,"SELECT * FROM produk");
+                                                            while($ffff=mysqli_fetch_array($mmm)){
+                                                            ?>
                                                             <tr>
                                                                 <th>2</th>
                                                                 <td>LCD</td>
                                                                 <td>There are many variations of passages of Lorem Ipsum available.</td>
                                                                 <td>$555.00</td>
                                                                 <td>$1110.00</td>
-                                                            </tr>
-                                                            <tr>
-                                                                <th>1</th>
-                                                                <td>Mobile</td>
-                                                                <td>It is a long established fact that a reader will be distracted.</td>
-                                                                <td>$100.00</td>
-                                                                <td>$100.00</td>
-                                                            </tr>
-                                                            <tr>
-                                                                <th>3</th>
-                                                                <td>Chair</td>
-                                                                <td>Contrary to popular belief, Lorem Ipsum is not simply random text.</td>
-                                                                <td>$30.00</td>
-                                                                <td>$90.00</td>
-                                                            </tr>
-                                                            <tr>
-                                                                <th>1</th>
-                                                                <td>Camera</td>
-                                                                <td>Aldus PageMaker including versions of Lorem Ipsum.</td>
-                                                                <td>$999.00</td>
-                                                                <td>$999.00</td>
-                                                            </tr>
-                                                            <tr>
-                                                                <th>3</th>
-                                                                <td>Headphone</td>
-                                                                <td>Various versions have evolved over the years, sometimes by accident.</td>
-                                                                <td>$20.00</td>
-                                                                <td>$60.00</td>
                                                             </tr>
                                                             <tr>                                                        
                                                                 <td colspan="3" class="border-0"></td>
@@ -213,6 +167,7 @@ include 'koneksi.php';
                                                                 <td class="border-0 font-14"><b>Total</b></td>
                                                                 <td class="border-0 font-14"><b>$2359.00</b></td>
                                                             </tr>
+                                                            <?php } ?>
                                                         </tbody>
                                                     </table>
                                                 </div>                                            
@@ -251,16 +206,13 @@ include 'koneksi.php';
                                         </div>
                                     </div>
                                 </div><!--end card-->
-                                
                             </div><!--end col-->
                         </div><!--end row-->
                     </div><!-- container -->
-                    
 
-                    <?php
-                    include 'footer.php';
-                    ?>
-        <!-- end page-wrapper -->
+                   <?php
+                   include 'footer.php';
+                   ?>
 
         <!-- jQuery  -->
         <script src="assets/js/jquery.min.js"></script>

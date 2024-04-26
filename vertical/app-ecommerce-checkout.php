@@ -126,6 +126,9 @@ include 'header.php';
                                                             echo"<td>
                                                                     ".($product['price']* $product['jumlah'])."
                                                                 </td>"; 
+                                                            echo"<td hidden>
+                                                                    ".$product['id']."
+                                                                </td>"; 
                                                             echo "<tr>";
                                                             }
                                                         }
