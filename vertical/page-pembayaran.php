@@ -47,43 +47,28 @@ include 'header.php';
                     <div class="page-content" >
                          <div class="container-fluid"> 
                             <div class="row">
-                                <div class="col-lg-12">
+                                <div class="col-lg-8">
                                     <div class="card">
                                         <div class="card-body new-user order-list">
-                                            <h4 class="col-lg-12 ">Item Sales</h4>
+                                            <h4 class="col-lg-12 text-center ">Item Sales</h4>
                                             <div class="table-responsive">
                                                 <table class="table table-hover mb-0">
                                                     <thead class="thead-light">
                                                         <tr>
-                                                            <th >Produk</th>
-                                                            <th >Nama Produk</th>
-                                                            <th >SISA STOK</th>
-                                                            <th >Jumlah Pembelian</th>
-                                                            <th >Amount ($)</th>
+                                                            <th class="text-center">JENIS PEMBAYARAN</th>
+                                                            <th class="text-center" >TOTAL PENGGUNAAN</th>
                                                         </tr><!--end tr-->
                                                     </thead>
                                                     <tbody>
                                                         <?php
-                                                        $myitemsales = mysqli_query($koneksi,"SELECT GambarProduk,NamaProduk,Jumlah,Stok,Harga,SUM(Jumlah) as jumlah,SUM(Harga) as harga from detailtransaksi inner join produk on detailtransaksi.ProdukID=produk.ProdukID inner join transaksi on detailtransaksi.TransaksiID=transaksi.TransaksiID GROUP BY NamaProduk");
-                                                        while($mysales = mysqli_fetch_array($myitemsales)){
+                                                        $mypembayaran = mysqli_query($koneksi,"SELECT JenisPembayaran, COUNT(*) AS pakai FROM transaksi INNER JOIN pembayaran ON transaksi.PembayaranID = pembayaran.PembayaranID GROUP BY JenisPembayaran");
+                                                        while($mybayar = mysqli_fetch_array($mypembayaran)){
                                                         ?>
                                                         <tr>
-                                                            <td>
-                                                                <img class="" src="assets/images/products/<?php
-                                                                echo $mysales['GambarProduk'];?>" alt="user"> </td>
-                                                            <td>
-                                                                <?php echo $mysales['NamaProduk'];?>
-                                                            </td>
-                                                            <td>   
-                                                                <?php echo $mysales['Stok'];?>
-
-                                                            </td>
-                                                            <td>
-                                                                <?php echo $mysales['jumlah'];?>
-                                                                
-                                                            </td>
-                                                            <td>
-                                                                <?php echo $mysales['harga'];?>
+                                                            <td class="text-center">
+                                                                <?php echo $mybayar['JenisPembayaran'];?>
+                                                            <td class="text-center">
+                                                                <?php echo $mybayar['pakai'];?>
                                                             </td>
                                                         </tr><!--end tr-->
                                                         <?php }?>

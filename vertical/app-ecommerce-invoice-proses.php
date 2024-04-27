@@ -44,7 +44,7 @@ if(isset($_POST['invoice'])){
             
             $updatepoint = mysqli_query($koneksi,"UPDATE pelanggan SET Nama = Nama, Email = Email,Telepon=Telepon,Alamat=Alamat,TanggalLahir=TanggalLahir,Gender=Gender,Points=Points+'$getpoint' where PelangganID ='$idcust'");
 
-            header("location: app-ecommerce-invoice.php");
+            header("location: app-ecommerce-invoice.php?idTransaksi=$idTransaksi");
             unset($_SESSION['custid']);
             unset($_SESSION['totalprice']);
             unset($_SESSION['totalbuy']);
@@ -104,7 +104,7 @@ if(isset($_POST['creditbut'])){
             }
             $updatepoint = mysqli_query($koneksi,"UPDATE pelanggan SET Nama = Nama, Email = Email,Telepon=Telepon,Alamat=Alamat,TanggalLahir=TanggalLahir,Gender=Gender,Points=Points+'$getpoint' where PelangganID ='$idcust'");
            
-            header("location: app-ecommerce-invoice.php");
+            header("location: app-ecommerce-invoice.php?idTransaksi=$idTransaksi");
             unset($_SESSION['custid']);
             unset($_SESSION['totalprice']);
             unset($_SESSION['totalbuy']);

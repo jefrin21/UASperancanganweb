@@ -20,12 +20,12 @@ include 'header.php';
         <div class="col-sm-12">
             <div class="page-title-box">
                 <div class="float-right align-item-center mt-2">
-                 <a href="app-ecommerce-product.php"><button class="btn btn-info px-4 align-self-center report-btn">Selesai</button></a>   
+                 <a href="page-transaksi.php"><button class="btn btn-info px-4 align-self-center report-btn">Kembali</button></a>   
                 </div>
                 <h4 class="page-title mb-2"><i class="mdi mdi-receipt mr-2"></i>Invoice</h4>
                 <div class="">
                     <ol class="breadcrumb">
-                        <li class="breadcrumb-item"><a href="javascript:void(0);">Frogetor</a></li>
+                        <li class="breadcrumb-item"><a href="javascript:void(0);">Makan Terus</a></li>
                         <li class="breadcrumb-item"><a href="javascript:void(0);">Pages</a></li>
                         <li class="breadcrumb-item active">Invoice</li>
                     </ol>
@@ -251,10 +251,6 @@ include 'header.php';
 
                 <!-- App js -->
                 <script src="assets/js/app.js"></script>
-                <script>
-                    $(document).ready(function() {
-                    alert('Transaksi Berhasil Dilakukan');
-                 });
 </script>
 
 
