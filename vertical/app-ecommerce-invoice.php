@@ -60,8 +60,8 @@ include 'header.php';
                                 <div class="card-body invoice-head">
                                     <div class="row">
                                         <div class="col-md-4 align-self-center">
-                                            <img src="assets/images/logo-sm.png" alt="logo-small" class="logo-sm mr-2" height="38">
-                                            <img src="assets/images/logo-dark.png" alt="logo-large" class="logo-lg" height="18">
+                                            <img src="assets/images/makanterus_logogram.png" alt="logo-small" class="logo-sm mr-2" height="38">
+                                            <img src="assets/images/makanterus_logotype.png" alt="logo-large" class="logo-lg" height="18">
                                         </div>
                                         <div class="col-md-8">
 

@@ -14,6 +14,7 @@ if(isset($_POST['invoice'])){
             $jumstok = $_SESSION['jumstok'];
             $idprod = $_SESSION['idprod'];
             $methodPembayaran = 2;
+            $sisamystok=$_SESSION['mystok'];
             $custpoint = $_SESSION['custPoint'];
 
 
@@ -34,17 +35,24 @@ if(isset($_POST['invoice'])){
 
             $updatepointcus = mysqli_query($koneksi,"UPDATE pelanggan SET Points=Points-'$custpoint' where PelangganID = '$idcust'");
 
+            $updatepoint = mysqli_query($koneksi,"UPDATE pelanggan SET Nama = Nama, Email = Email,Telepon=Telepon,Alamat=Alamat,TanggalLahir=TanggalLahir,Gender=Gender,Points=Points+'$getpoint' where PelangganID ='$idcust'");
+
             $stokproduk = isset($_SESSION['shop'])? $_SESSION['shop'] : array();
             foreach($stokproduk as $stok){
                 $iddstok = $stok['id'];
                  $jumstok = $_SESSION['jumstok'];
+                 if($jumstok >  $sisamystok){
+                    echo "<script>alert('Jumlah Produk Berlebihan');</script>";
+                    echo "<script>window.location.href='app-ecommerce-product.php';</script>";
+                 }else{
                  $updatepieces =mysqli_query($koneksi,"UPDATE produk SET stok=stok -'$jumstok' where ProdukID ='$iddstok'");
+                  header("location: app-ecommerce-invoice.php?idTransaksi=$idTransaksi");
+                 }
             }
            
             
-            $updatepoint = mysqli_query($koneksi,"UPDATE pelanggan SET Nama = Nama, Email = Email,Telepon=Telepon,Alamat=Alamat,TanggalLahir=TanggalLahir,Gender=Gender,Points=Points+'$getpoint' where PelangganID ='$idcust'");
 
-            header("location: app-ecommerce-invoice.php?idTransaksi=$idTransaksi");
+           
             unset($_SESSION['custid']);
             unset($_SESSION['totalprice']);
             unset($_SESSION['totalbuy']);
@@ -55,6 +63,7 @@ if(isset($_POST['invoice'])){
             unset($_SESSION['jumstok']);
             unset($_SESSION['idprod']);
             unset($_SESSION['custPoint']);
+            unset($_SESSION['mystok']);
 
     }else{
         echo "<script>alert('Silahkan isi  data customer terlebih dahulu');</script>";
@@ -76,6 +85,7 @@ if(isset($_POST['creditbut'])){
             $jumstok = $_SESSION['jumstok'];
             $idprod = $_SESSION['idprod'];
             $methodPembayaran = 1;
+            $sisamystok=$_SESSION['mystok'];
             $custpoint = $_SESSION['custPoint'];
 
 
@@ -96,15 +106,22 @@ if(isset($_POST['creditbut'])){
 
 
             $updatepointcus = mysqli_query($koneksi,"UPDATE pelanggan SET Points=Points-'$custpoint' where PelangganID = '$idcust'");
+
+            $updatepoint = mysqli_query($koneksi,"UPDATE pelanggan SET Nama = Nama, Email = Email,Telepon=Telepon,Alamat=Alamat,TanggalLahir=TanggalLahir,Gender=Gender,Points=Points+'$getpoint' where PelangganID ='$idcust'");
+
             $stokproduk = isset($_SESSION['shop'])? $_SESSION['shop'] : array();
             foreach($$stokproduk as $stok){
                 $iddstok = $stok['id'];
-                 $jumstok = $_SESSION['jumstok'];
+                $jumstok = $_SESSION['jumstok'];
+                 if($jumstok > $sisamystok){
+                    echo "<script>alert('Jumlah Produk Berlebihan');</script>";
+                    echo "<script>window.location.href='app-ecommerce-product.php';</script>";
+                 }else{
                  $updatepieces =mysqli_query($koneksi,"UPDATE produk SET stok=stok -'$jumstok' where ProdukID ='$iddstok'");
+                 header("location: app-ecommerce-invoice.php?idTransaksi=$idTransaksi");
+                 }
             }
-            $updatepoint = mysqli_query($koneksi,"UPDATE pelanggan SET Nama = Nama, Email = Email,Telepon=Telepon,Alamat=Alamat,TanggalLahir=TanggalLahir,Gender=Gender,Points=Points+'$getpoint' where PelangganID ='$idcust'");
            
-            header("location: app-ecommerce-invoice.php?idTransaksi=$idTransaksi");
             unset($_SESSION['custid']);
             unset($_SESSION['totalprice']);
             unset($_SESSION['totalbuy']);
@@ -115,6 +132,7 @@ if(isset($_POST['creditbut'])){
             unset($_SESSION['jumstok']);
             unset($_SESSION['idprod']);
             unset($_SESSION['custPoint']);
+            unset($_SESSION['mystok']);
 
     }else{
         echo "<script>alert('Silahkan isi  data customer terlebih dahulu');</script>";
