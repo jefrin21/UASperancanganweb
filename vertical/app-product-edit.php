@@ -21,7 +21,7 @@ include 'header.php';
                 <div class="row">
                     <div class="col-sm-12">
                         <div class="page-title-box">
-                            <h4 class="page-title mb-2"><i class="mdi mdi-account mr-2"></i>Customer Data</h4>  
+                            <h4 class="page-title mb-2"><i class="mdi mdi-account mr-2"></i>Edit Product</h4>  
                             <div class="">
                                 <ol class="breadcrumb">
                                     <li class="breadcrumb-item"><a href="javascript:void(0);">Frogetor</a></li>
@@ -100,22 +100,20 @@ include 'header.php';
                                                 </tr>
                                                 
                                                 <tr>
-                                                    <td>Kategori ID</td>
+                                                    <td>Kategori Nama</td>
                                                     <td>:</td>
                                                     <td> 
                                                          <select class="form-control form-control-lg py-1" name="kategori">
                                                        
                                                         <?php
-                                                        $querykat = mysqli_query($koneksi,"SELECT * FROM kategoriproduk where KategoriID = $idkat   ");
+                                                        $querykat = mysqli_query($koneksi,"SELECT * FROM kategoriproduk ");
                                                         while($kat= mysqli_fetch_array($querykat)){
                                                         ?>
-                                                        
-
-                                                            <option value="<?php echo $data['KategoriID'];?>"> 
-                                                                <?php echo $data['NamaKategori'];?>
+                                                            <option value="<?php echo $kat['KategoriID'];?>"> 
+                                                                <?php echo $kat['NamaKategori'];?>
                                                             </option>
 
-                                                           
+                                                            
                                                         <?php
                                                         }
                                                         ?>
