@@ -19,9 +19,6 @@ include 'header.php';
                 <div class="row">
                     <div class="col-sm-12">
                         <div class="page-title-box">
-                            <div class="float-right align-item-center mt-2">
-                                <button class="btn btn-info px-4 align-self-center report-btn">Create Report</button>
-                            </div>
                             <h4 class="page-title mb-2"><i class="mdi mdi-format-list-checkbox mr-2"></i>Product List</h4>  
                             <div class="">
                                 <ol class="breadcrumb">

@@ -69,8 +69,8 @@ include 'header.php';
                                                 <li class="list-inline-item">
                                                     <div class="pl-3">
                                                         <i class="mdi mdi-web"></i>
-                                                        <p class="text-muted mb-0">www.abcdefghijklmno.com</p>
-                                                        <p class="text-muted mb-0">www.qrstuvwxyz.com</p>
+                                                        <p class="text-muted mb-0">www.MakanTerus.com</p>
+                                                        <p class="text-muted mb-0">www.MakanTerus.com</p>
                                                     </div>
                                                 </li>
                                                 <li class="list-inline-item">
@@ -83,8 +83,8 @@ include 'header.php';
                                                 <li class="list-inline-item">
                                                     <div class="pl-3">
                                                         <i class="mdi mdi-map-marker"></i>
-                                                        <p class="text-muted mb-0">2821 Kensington Road,</p>
-                                                        <p class="text-muted mb-0">Avondale Estates, GA 30002 USA.</p>
+                                                        <p class="text-muted mb-0">Karawaci,</p>
+                                                        <p class="text-muted mb-0">Tangerang, Indonesia 2024.</p>
                                                     </div>
                                                 </li>
                                             </ul>

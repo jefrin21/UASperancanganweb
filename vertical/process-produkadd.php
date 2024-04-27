@@ -5,11 +5,11 @@ if(isset($_POST['tambah']))
 {
 
 		// //tangkap data dari form
-		$ambilid 	    = $_POST['ProductID'];
 		$ambilnama  	= $_POST['Nama'];
 		$ambilkategori	= $_POST['Kategori'];
 		$ambilharga	= $_POST['Harga'];
 		$ambilstok 	= $_POST['Stok'];
+		$ambilhargaproduksi =$_POST['hargaproduksi'];
 		$ambildeskripsi	= $_POST['Deskripsi'];
 		$ambilgambar = $_FILES["Gambar"]["name"];
 
@@ -56,10 +56,15 @@ if(isset($_POST['tambah']))
 				
 			
 				//simpan data ke database
-				$query = "INSERT INTO produk (ProdukID, NamaProduk, KategoriID, HargaSatuan, Stok, Deskripsi, GambarProduk)			
-				VALUES('$ambilid', '$ambilnama',$ambilkategori, '$ambilharga','$ambilstok', '$ambildeskripsi','$rand$ambilgambar')";
+				$query = "INSERT INTO produk (NamaProduk, KategoriID,HargaProduksi, HargaSatuan, Stok, Deskripsi, GambarProduk)			
+				VALUES('$ambilnama',$ambilkategori,'$ambilhargaproduksi', '$ambilharga','$ambilstok', '$ambildeskripsi','$rand$ambilgambar')";
 				
 				$run = mysqli_query($koneksi, $query);
+				$idproduk = mysqli_insert_id($koneksi);
+
+				$totalpengeluaran = $ambilhargaproduksi*$ambilstok;
+				$queryproduksi =mysqli_query ($koneksi,"INSERT INTO produksi(ProdukID,TanggalProduksi,JumlahProduksi,TotalPengeluaran)
+				VALUES('$idproduk',CURRENT_DATE,'$ambilstok','$totalpengeluaran' ) ");
 
 				
 

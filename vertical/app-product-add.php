@@ -88,16 +88,6 @@ include 'header.php';
                                                 $data = mysqli_num_rows($query);
                                                 ?>
                                                 <tr>
-                                                    <td>ID Product</td>
-                                                    <td>:</td>
-                                                    <td>
-                                                        <input class="form-control form-control-lg" type="text" 
-                                                        name="ProductID" required 
-                                                        value="PRD-<?=$data;?>">
-                                                    </td> 				
-                                                </tr>
-                                                
-                                                <tr>
                                                     <td>Nama Produk</td>
                                                     <td>:</td>
                                                     <td>
@@ -130,8 +120,15 @@ include 'header.php';
                                                     </td>
                                                 </tr>
 
+                                                 <tr>
+                                                    <td>Harga Produksi</td>
+                                                    <td>:</td>
+                                                    <td><input class="form-control form-control-lg" type="text" name="hargaproduksi"  required >
+                                                    </td>
+                                                </tr>
+
                                                 <tr>
-                                                    <td>Harga</td>
+                                                    <td>Harga Jual</td>
                                                     <td>:</td>
                                                     <td><input class="form-control form-control-lg" type="text" name="Harga"  required >
                                                     </td>

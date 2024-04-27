@@ -20,9 +20,6 @@ include 'header.php';
                 <div class="row">
                     <div class="col-sm-12">
                         <div class="page-title-box">
-                            <div class="float-right align-item-center mt-2">
-                                <button class="btn btn-info px-4 align-self-center report-btn">Create Report</button>
-                            </div>
                             <h4 class="page-title mb-2"><i class="mdi mdi-google-pages mr-2"></i>Shopping</h4>  
                             <div class="">
                                 <ol class="breadcrumb">
@@ -101,9 +98,16 @@ include 'header.php';
                             </ul>
                             <form method="post" action="app-ecommerce-proses-cart.php">
                                 <input type="hidden" name="produkk" value="<?php echo $data['ProdukID']; ?>">
-                                <button class="btn btn-dark btn-sm waves-effect waves-light wishlist" data-toggle="tooltip" data-placement="top" title="Wishlist"><i class="mdi mdi-heart"></i></button>
-                                <button class="btn btn-cart btn-sm waves-effect waves-light" type="submit" name="add" value="bro"><i class="mdi mdi-cart mr-1"></i> Add To Cart</button>
-                                <button class="btn btn-dark btn-sm waves-effect waves-light quickview" data-toggle="tooltip" data-placement="top" title="Quickview"><i class="mdi mdi-magnify"></i></button>
+                               <a href="app-ecommerce-product.php"><button class="btn btn-dark btn-sm waves-effect waves-light wishlist" data-toggle="tooltip"  title="Wishlist"><i class="mdi mdi-heart"></i></button></a> 
+                               <?php
+                                    $jmlhstok = $data['Stok'];
+                                    if($jmlhstok>=1){
+                                    echo"<button class='btn btn-cart btn-sm waves-effect waves-light' type='submit' name='add' value='bro'><i class='mdi mdi-cart mr-1'></i> Add To Cart</button>";
+                                    }else{
+                                    echo "<button class='btn btn-cart btn-sm waves-effect waves-light' type='submit' name='add' value='bro' onclick='addToCart()' disabled><i class='mdi mdi-cart mr-1'></i> Sold Out</button>";
+                                    }
+                               ?>
+                               <a href="app-ecommerce-product.php"><button class="btn btn-dark btn-sm waves-effect waves-light quickview" data-toggle="tooltip" data-placement="top" title="Quickview"><i class="mdi mdi-magnify"></i></button></a> 
                             </form>
                         </div><!--end card-body-->
                     </div><!--end card-->

@@ -84,14 +84,6 @@ include 'header.php';
                                         <form  action="process-customeradd.php" method="post">
                                             <table class="table border">
                                                 <tr>
-                                                    <td>ID Pelanggan</td>
-                                                    <td>:</td>
-                                                    <td>
-                                                        <input class="form-control form-control-lg" type="text" name="Pelangganid" required >
-                                                    </td> 				
-                                                </tr>
-                                                
-                                                <tr>
                                                     <td>Nama</td>
                                                     <td>:</td>
                                                     <td>
@@ -148,7 +140,7 @@ include 'header.php';
                                                 <tr>
                                                     <td>Point</td>
                                                     <td>:</td>
-                                                    <td><input class="form-control form-control-lg" type="text" name="Points">
+                                                    <td><input class="form-control form-control-lg" type="text " readonly name="Points" value="0">
                                                     </td>
                                                 </tr>
 

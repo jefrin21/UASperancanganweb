@@ -32,7 +32,7 @@
                                         <li><a href="page-transaksi.php">Transaction History</a></li>
                                     </ul>
                         </li>  
-                        <li><a href="app-contact-list.php"><i class="mdi mdi-clipboard-outline"></i><span>Production Report</span></a></li>
+                        <li><a href="page-laporan-produksi.php"><i class="mdi mdi-clipboard-outline"></i><span>Production Report</span></a></li>
                     </ul>
                 </div>
                 <!-- end left-sidenav-->

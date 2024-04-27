@@ -47,28 +47,40 @@ include 'header.php';
                     <div class="page-content" >
                          <div class="container-fluid"> 
                             <div class="row">
-                                <div class="col-lg-8">
+                                <div class="col-lg-12">
                                     <div class="card">
                                         <div class="card-body new-user order-list">
-                                            <h4 class="col-lg-12 ">Item Sales</h4>
+                                            <h4 class="col-lg-12 ">ITEM SALES</h4>
                                             <div class="table-responsive">
                                                 <table class="table table-hover mb-0">
                                                     <thead class="thead-light">
                                                         <tr>
-                                                            <th class="text-center">JENIS PEMBAYARAN</th>
-                                                            <th class="text-center" >TOTAL PENGGUNAAN</th>
+                                                            <th class="text-center">TANGGAL PRODUKSI</th>
+                                                            <th class="text-center" >NAMA PRODUK</th>
+                                                            <th class="text-center" >HARGA PRODUKSI</th>
+                                                            <th class="text-center" >JUMLAH PRODUKSI</th>
+                                                            <th class="text-center" >TOTAL PENGELUARAN</th>
                                                         </tr><!--end tr-->
                                                     </thead>
                                                     <tbody>
                                                         <?php
-                                                        $mypembayaran = mysqli_query($koneksi,"SELECT JenisPembayaran, COUNT(*) AS pakai FROM transaksi INNER JOIN pembayaran ON transaksi.PembayaranID = pembayaran.PembayaranID GROUP BY JenisPembayaran");
-                                                        while($mybayar = mysqli_fetch_array($mypembayaran)){
+                                                        $myproduksi = mysqli_query($koneksi,"SELECT *,SUM(JumlahProduksi) as jmlh FROM produksi inner join produk on produksi.ProdukID=produk.ProdukID GROUP BY TanggalProduksi");
+                                                        while($mybad = mysqli_fetch_array($myproduksi)){
                                                         ?>
                                                         <tr>
                                                             <td class="text-center">
-                                                                <?php echo $mybayar['JenisPembayaran'];?>
+                                                                <?php echo $mybad['TanggalProduksi'];?>
                                                             <td class="text-center">
-                                                                <?php echo $mybayar['pakai'];?>
+                                                                <?php echo $mybad['NamaProduk'];?>
+                                                            </td>
+                                                            <td class="text-center">
+                                                                <?php echo $mybad['HargaProduksi'];?>
+                                                            </td>
+                                                            <td class="text-center">
+                                                                <?php echo $mybad['jmlh'];?>
+                                                            </td>
+                                                            <td class="text-center">
+                                                                <?php echo $mybad['TotalPengeluaran'];?>
                                                             </td>
                                                         </tr><!--end tr-->
                                                         <?php }?>
