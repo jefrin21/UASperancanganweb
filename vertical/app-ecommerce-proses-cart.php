@@ -8,6 +8,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $result = mysqli_query($koneksi, "SELECT * FROM produk WHERE ProdukID=$id");
         if (mysqli_num_rows($result) > 0) {
             $row = mysqli_fetch_assoc($result);
+            $krnginstok = mysqli_query($koneksi, "UPDATE produk set stok = stok - 1 where ProdukID = $id");
             if (isset($_SESSION['shop'][$id])) {
                 $_SESSION['shop'][$id]['jumlah'] += 1;
             } else {

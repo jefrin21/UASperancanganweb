@@ -12,6 +12,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['delete'])) {
                 
             }
         }
+        $balikinstok = mysqli_query($koneksi, "UPDATE produk set stok = stok + $product[jumlah] where ProdukID = $id_produk");
     }
 }
 

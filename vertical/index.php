@@ -228,41 +228,73 @@ session_start();
                             <div class="col-12">
                                 <div class="card">
                                     <div class="card-body">
-                                        <h4 class="mt-0 header-title">World Wide Customers</h4>
-                                        <div class="row">                                        
-                                            <div class="col-md-4">
-                                                <div class="mt-2">
-                                                    <img src="assets/images/flags/us_flag.jpg" alt="" class="mb-2" height="30">
-                                                    <h5 class="mb-3">Our most customers in America <span class="badge badge-primary">March 2019</span></h5>
-                                                    <p class="font-13 text-muted mb-0"> But who has any right to find fault with a man who 
-                                                        chooses to enjoy a pleasure that 
-                                                        has no.
-                                                    </p>
-                                                    <div class="apexchart-wrapper">
-                                                        <div id="d1-radialBarMap" class="chart-gutters"></div>
-                                                    </div>
-                                                </div>
-                                                <div class="row mt-4">
-                                                    <div class="col-md-6">
-                                                        <p class="mb-2 text-muted font-13">Domestic Customers</p>
-                                                        <h3 class="mt-0"><img src="assets/images/flags/us_flag.jpg" alt="" class="mr-2 thumb-xs rounded-circle">2.8k</h3>
-                                                        <div class="progress mt-2  mx-auto" style="height:3px;">
-                                                            <div class="progress-bar bg-success" role="progressbar" style="width: 75%" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100"></div>
-                                                        </div>
-                                                    </div><!--end col-->
-                                                    <div class="col-md-6">
-                                                        <p class="mb-2 text-muted font-13">International Customers</p>
-                                                        <h3 class="mt-0"><i class="fas fa-globe text-muted mr-2 font-30"></i>1.9k</h3>
-                                                        <div class="progress mt-2 mx-auto" style="height:3px;">
-                                                            <div class="progress-bar  bg-warning" role="progressbar" style="width: 55%;" aria-valuenow="55" aria-valuemin="0" aria-valuemax="100"></div>
-                                                        </div>
-                                                    </div><!--end col-->
-                                                </div><!--end row-->
-                                            </div><!--end col-->
-                                            <div class="col-md-8">
-                                                <div id="world-map-markers" class="dashboard-map"></div>
-                                            </div><!--end col-->
-                                        </div><!--end row-->
+                                        <h4 class="mt-0 header-title">Produk</h4>
+                                        <div class="table-responsive">
+                                            <table class="table table-hover mb-0">
+                                                <thead class="thead-light">
+                                                    <tr>
+                                                        <th class="border-top-0">TransaksiID</th>
+                                                        <th class="border-top-0">Tanggal Transaksi</th>
+                                                        <th class="border-top-0">Waktu Transaksi</th>
+                                                        <th class="border-top-0">KaryawanID</th>
+                                                        <th class="border-top-0">PelangganID.</th>                                    
+                                                        <th class="border-top-0">SubtotalHarga</th>
+                                                        <th class="border-top-0">DiskonID</th>
+
+
+
+
+
+                                                        </tr><!--end tr-->
+                                                </thead>
+                                                <tbody>
+                                                    <?php
+                                                    $query = mysqli_query($koneksi, "SELECT * FROM produk ");
+                                                    while($data = mysqli_fetch_array($query)){
+                                                        ?>
+                                                        <tr>
+                                                            <td>
+                                                                <?php
+                                                                echo $data["ProdukID"];
+                                                                ?>
+                                                            </td>
+                                                            <td>
+                                                                <?php
+                                                                echo $data["NamaProduk"];
+                                                                ?>
+                                                            </td>
+                                                            <td>
+                                                                <?php
+                                                                echo $data["KategoriID"];
+                                                                ?>
+                                                            </td>
+                                                            <td>
+                                                                <?php
+                                                                echo $data["HargaSatuan"];
+                                                                ?>
+                                                            </td>
+                                                            <td>
+                                                                <?php
+                                                                echo $data["Stok"];
+                                                                ?>
+                                                            </td>
+                                                            <td>
+                                                                <?php
+                                                                echo $data["Deskripsi"];
+                                                                ?>
+                                                            </td>
+                                                            <td class="col-lg-1">
+                                                                <img src="assets/images/products/<?php echo $data['GambarProduk']; ?>" alt="" class="img-fluid">
+                                                            </td>
+                                                        </tr>
+                                                    <?php
+                                                } 
+                                                ?>
+                                                    
+                                                                                                 
+                                                </tbody>
+                                            </table> <!--end table-->                                               
+                                        </div>
                                     </div><!--end card-body-->
                                 </div><!--end card-->
                             </div> <!--end col-->                                                
@@ -378,7 +410,7 @@ session_start();
                                                 <i class="far fa-user"></i>
                                             </div>
                                             <h2 class="font-weight-bold text-white">10</h2>
-                                            <p class="text-white mb-0 font-16">Top 10 Best Saler This Month</p>                                            
+                                            <p class="text-white mb-0 font-16">Produk Top Bulan ini</p>                                            
                                         </div>
                                     </div>
                                     <div class="card-body dash-info-carousel">                                        
@@ -442,7 +474,7 @@ session_start();
                                                 <i class="far fa-smile"></i>
                                             </div>
                                             <h2 class="font-weight-bold text-white">58</h2>
-                                            <p class="text-white mb-0 font-16">Stores Very Good Review</p>                                            
+                                            <p class="text-white mb-0 font-16">Produk Terbaru</p>                                            
                                         </div>
                                     </div><!--end card-body-->
                                     <div class="card-body dash-info-carousel">                                        
