@@ -20,9 +20,6 @@
                 <div class="row">
                     <div class="col-sm-12">
                         <div class="page-title-box">
-                            <div class="float-right align-item-center mt-2">
-                                <button class="btn btn-info px-4 align-self-center report-btn">Create Report</button>
-                            </div>
                             <h4 class="page-title mb-2"><i class="mdi mdi-monitor mr-2"></i>Dashboard</h4>  
                             <div class="">
                                 <ol class="breadcrumb">
@@ -58,7 +55,7 @@
                                             <div class="col-8 align-self-center">
                                             <div class="">
                                                     <h4 class="mt-0 header-title">Total Profit</h4>
-                                                    <h2 class="mt-0 font-weight-bold text-dark"><?php
+                                                    <h2 class="mt-0 font-weight-bold text-dark">Rp<?php
                                                         $queryharga = mysqli_query($koneksi,"SELECT  SUM(TotalHarga) as profit from transaksi ");
                                                         $dataharga = mysqli_fetch_array($queryharga);
                                                         $querypengeluaran = mysqli_query($koneksi,"SELECT SUM(TotalPengeluaran) as harga from produksi ");
@@ -85,11 +82,11 @@
                                         <div class="row">                                            
                                             <div class="col-8 align-self-center">
                                                 <div class="">
-                                                    <h4 class="mt-0 header-title">Total Transaksi</h4>
-                                                    <h2 class="mt-0 font-weight-bold text-dark">
-                                                        <?php
-                                                        $query = mysqli_query($koneksi, "SELECT * FROM  transaksi ");
-                                                        echo mysqli_num_rows($query);
+                                                    <h4 class="mt-0 header-title">Total Harga Produksi</h4>
+                                                    <h2 class="mt-0 font-weight-bold text-dark">Rp<?php
+                                                        $query = mysqli_query($koneksi, "SELECT sum(TotalPengeluaran) as harga from produksi ");
+                                                        $data = mysqli_fetch_array($query);
+                                                        echo $data['harga'];
                                                         ?></h2> 
                                                 </div>
                                             </div><!--end col-->
