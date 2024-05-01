@@ -225,7 +225,7 @@ include 'header.php';
                                                         <td class="font-weight-bold">
                                                              <?php
                                                              if(isset($_GET['id'])){
-                                                             $totalbuy= $totalPrice - $_SESSION["custPoint"]; 
+                                                             $totalbuy= $totalPrice - $_SESSION["redpoint"]; 
                                                              echo $totalbuy;
                                                              $_SESSION['totalbuy'] = $totalbuy;
                                                              }else{

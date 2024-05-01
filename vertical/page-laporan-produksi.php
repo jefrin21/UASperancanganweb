@@ -64,7 +64,7 @@ include 'header.php';
                                                     </thead>
                                                     <tbody>
                                                         <?php
-                                                        $myproduksi = mysqli_query($koneksi,"SELECT *,SUM(JumlahProduksi) as jmlh FROM produksi inner join produk on produksi.ProdukID=produk.ProdukID GROUP BY TanggalProduksi");
+                                                        $myproduksi = mysqli_query($koneksi,"SELECT *,SUM(JumlahProduksi) as jmlh FROM produksi inner join produk on produksi.ProdukID=produk.ProdukID GROUP BY NamaProduk");
                                                         while($mybad = mysqli_fetch_array($myproduksi)){
                                                         ?>
                                                         <tr>

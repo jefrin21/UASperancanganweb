@@ -1,5 +1,5 @@
 <?php
-session_start();
+
     include 'koneksi.php';
     ?>
 
@@ -21,7 +21,7 @@ session_start();
                     <div class="col-sm-12">
                         <div class="page-title-box">
                             <div class="float-right align-item-center mt-2">
-                                <button class="btn btn-info px-4 align-self-center report-btn">Creat Report</button>
+                                <button class="btn btn-info px-4 align-self-center report-btn">Create Report</button>
                             </div>
                             <h4 class="page-title mb-2"><i class="mdi mdi-monitor mr-2"></i>Dashboard</h4>  
                             <div class="">
@@ -56,10 +56,16 @@ session_start();
                                     <div class="card-body mb-0">
                                         <div class="row">                                            
                                             <div class="col-8 align-self-center">
-                                                <div class="">
+                                            <div class="">
                                                     <h4 class="mt-0 header-title">Total Profit</h4>
-                                                    <h2 class="mt-0 font-weight-bold text-dark">40k</h2> 
-                                                    <p class="mb-0 text-muted"><span class="text-success"><i class="mdi mdi-arrow-up"></i>14.5%</span> Up From Last Week</p>
+                                                    <h2 class="mt-0 font-weight-bold text-dark"><?php
+                                                        $queryharga = mysqli_query($koneksi,"SELECT  SUM(TotalHarga) as profit from transaksi ");
+                                                        $dataharga = mysqli_fetch_array($queryharga);
+                                                        $querypengeluaran = mysqli_query($koneksi,"SELECT SUM(TotalPengeluaran) as harga from produksi ");
+                                                        $datapengeluaran = mysqli_fetch_array($querypengeluaran);
+                                                        echo $dataharga['profit'] - $datapengeluaran['harga'];
+                                                    ?></h2> 
+
                                                 </div>
                                             </div><!--end col-->
                                             <div class="col-4 align-self-center">
@@ -69,15 +75,7 @@ session_start();
                                             </div><!--end col-->
                                         </div><!--end row-->
                                     </div><!--end card-body-->
-                                    <div class="card-body overflow-hidden p-0">
-                                        <div class="d-flex mb-0 h-100 dash-info-box">
-                                            <div class="w-100">                                                
-                                                <div class="apexchart-wrapper">
-                                                    <div id="dash_spark_1" class="chart-gutters"></div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div><!--end card-body-->                                                                    
+                                                                                                     
                                 </div><!--end card-->
                             </div><!--end col-->
 
@@ -93,7 +91,6 @@ session_start();
                                                         $query = mysqli_query($koneksi, "SELECT * FROM  transaksi ");
                                                         echo mysqli_num_rows($query);
                                                         ?></h2> 
-                                                    <p class="mb-0 text-muted"><span class="text-success"><i class="mdi mdi-arrow-up"></i>14.5%</span> Up from yesterday</p>
                                                 </div>
                                             </div><!--end col-->
                                             <div class="col-4 align-self-center">
@@ -103,15 +100,7 @@ session_start();
                                             </div><!--end col-->
                                         </div><!--end row-->
                                     </div><!--end card-body-->
-                                    <div class="card-body overflow-hidden p-0">
-                                        <div class="d-flex mb-0 h-100 dash-info-box">
-                                            <div class="w-100">                                                
-                                                <div class="apexchart-wrapper">
-                                                    <div id="apex_column1" class="chart-gutters"></div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div><!--end card-body-->                                                                    
+                                                                  
                                 </div><!--end card-->
                             </div><!--end col-->
                             <div class="col-lg-4">
@@ -134,7 +123,6 @@ session_start();
                                                                     echo mysqli_num_rows($query);
                                                                
                                                                     ?></h2> 
-                                                                <p class="mb-1 text-muted"><span class="text-success"><i class="mdi mdi-arrow-up"></i>35.5%</span> Last 100 Subscriptions</p>
                                                             </div>
                                                         </div><!--end col-->                                                        
                                                     </div><!--end row-->                                                    
@@ -147,27 +135,15 @@ session_start();
                                                                 <div class="icon-info my-3">
                                                                     <i class="dripicons-basket bg-soft-info"></i>
                                                                 </div>
-                                                                <h2 class="mt-0 font-weight-bold text-dark">1824</h2> 
-                                                                <p class="mb-1 text-muted"><span class="text-danger"><i class="mdi mdi-arrow-down"></i>1.5%</span> Down From Last week</p>
+                                                                <h2 class="mt-0 font-weight-bold text-dark"><?php
+                                                                $query = mysqli_query($koneksi,"SELECT sum(Jumlah) as totaljumlah FROM detailtransaksi");
+                                                                $data = mysqli_fetch_array($query);
+                                                                echo $data['totaljumlah'];
+                                                                ?></h2> 
                                                             </div>
                                                         </div><!--end col-->                                                        
                                                     </div><!--end row-->                                                    
-                                                </div><!--end carousel-item-->
-
-                                                <div class="carousel-item">
-                                                    <div class="row">                                            
-                                                        <div class="col-12 align-self-center">
-                                                            <div class="text-center">
-                                                                <h4 class="mt-0 header-title text-left">Produk Dikembalikan</h4>
-                                                                <div class="icon-info my-3">
-                                                                    <i class="dripicons-swap bg-soft-primary"></i>
-                                                                </div>
-                                                                <h2 class="mt-0 font-weight-bold text-dark">11.1%</h2> 
-                                                                <p class="mb-1 text-muted"><span class="text-success"><i class="mdi mdi-arrow-up"></i>11.1%</span> Up from Last Month</p>
-                                                            </div>
-                                                        </div><!--end col-->                                                        
-                                                    </div><!--end row-->                                                    
-                                                </div><!--end carousel-item-->
+                                                </div><!--end carousel-item-->                                               
                                                 <div class="carousel-item">
                                                     <div class="row">                                            
                                                         <div class="col-12 align-self-center">
@@ -178,10 +154,10 @@ session_start();
                                                                 </div>
                                                                 <h2 class="mt-0 font-weight-bold text-dark">
                                                                     <?php
-                                                                        $query = mysqli_query($koneksi, "SELECT * FROM produk");
-                                                                        echo mysqli_num_rows($query)
+                                                                        $query = mysqli_query($koneksi, "SELECT COUNT(ProdukID) as totalproduk FROM produk");
+                                                                        $data = mysqli_fetch_array($query);
+                                                                        echo $data['totalproduk'];
                                                                     ?></h2> 
-                                                                <p class="mb-1 text-muted">All International Brands</p>
                                                             </div>
                                                         </div><!--end col-->                                                        
                                                     </div><!--end row-->                                                    
@@ -204,7 +180,6 @@ session_start();
                                                                        echo $data["TOTAL"];
                                                             
                                                                     ?> </h2> 
-                                                                <p class="mb-1 text-muted"><span class="text-success"><i class="mdi mdi-arrow-up"></i>11.1%</span> Up from yesterday</p>
                                                             </div>
                                                         </div><!--end col-->                                                        
                                                     </div><!--end row-->                                                    
@@ -223,185 +198,8 @@ session_start();
                                 </div><!--end card-->
                             </div><!--end col-->                            
                         </div><!--end row-->
-                        <div class="row"> 
-                            
-                            <div class="col-12">
-                                <div class="card">
-                                    <div class="card-body">
-                                        <h4 class="mt-0 header-title">Produk</h4>
-                                        <div class="table-responsive">
-                                            <table class="table table-hover mb-0">
-                                                <thead class="thead-light">
-                                                    <tr>
-                                                        <th class="border-top-0">TransaksiID</th>
-                                                        <th class="border-top-0">Tanggal Transaksi</th>
-                                                        <th class="border-top-0">Waktu Transaksi</th>
-                                                        <th class="border-top-0">KaryawanID</th>
-                                                        <th class="border-top-0">PelangganID.</th>                                    
-                                                        <th class="border-top-0">SubtotalHarga</th>
-                                                        <th class="border-top-0">DiskonID</th>
-
-
-
-
-
-                                                        </tr><!--end tr-->
-                                                </thead>
-                                                <tbody>
-                                                    <?php
-                                                    $query = mysqli_query($koneksi, "SELECT * FROM produk ");
-                                                    while($data = mysqli_fetch_array($query)){
-                                                        ?>
-                                                        <tr>
-                                                            <td>
-                                                                <?php
-                                                                echo $data["ProdukID"];
-                                                                ?>
-                                                            </td>
-                                                            <td>
-                                                                <?php
-                                                                echo $data["NamaProduk"];
-                                                                ?>
-                                                            </td>
-                                                            <td>
-                                                                <?php
-                                                                echo $data["KategoriID"];
-                                                                ?>
-                                                            </td>
-                                                            <td>
-                                                                <?php
-                                                                echo $data["HargaSatuan"];
-                                                                ?>
-                                                            </td>
-                                                            <td>
-                                                                <?php
-                                                                echo $data["Stok"];
-                                                                ?>
-                                                            </td>
-                                                            <td>
-                                                                <?php
-                                                                echo $data["Deskripsi"];
-                                                                ?>
-                                                            </td>
-                                                            <td class="col-lg-1">
-                                                                <img src="assets/images/products/<?php echo $data['GambarProduk']; ?>" alt="" class="img-fluid">
-                                                            </td>
-                                                        </tr>
-                                                    <?php
-                                                } 
-                                                ?>
-                                                    
-                                                                                                 
-                                                </tbody>
-                                            </table> <!--end table-->                                               
-                                        </div>
-                                    </div><!--end card-body-->
-                                </div><!--end card-->
-                            </div> <!--end col-->                                                
-                        </div><!--end row-->
-
-                        <div class="row">
-                            <div class="col-12">
-                                <div class="card">
-                                    <div class="card-body new-user order-list">
-                                        <h4 class="header-title mt-0 mb-3">History Transaksi</h4>
-                                        <div class="table-responsive">
-                                            <table class="table table-hover mb-0">
-                                                <thead class="thead-light">
-                                                    <tr>
-                                                        <th class="border-top-0">TransaksiID</th>
-                                                        <th class="border-top-0">Tanggal Transaksi</th>
-                                                        <th class="border-top-0">Waktu Transaksi</th>
-                                                        <th class="border-top-0">KaryawanID</th>
-                                                        <th class="border-top-0">PelangganID.</th>                                    
-                                                        <th class="border-top-0">SubtotalHarga</th>
-                                                        <th class="border-top-0">DiskonID</th>
-                                                        <th class="border-top-0">TotalHarga</th>
-                                                        <th class="border-top-0">GetPoint</th>
-                                                        <th class="border-top-0">RedeemPoint</th>
-                                                        <th class="border-top-0">PembayaranID</th>
-
-
-
-
-                                                        </tr><!--end tr-->
-                                                </thead>
-                                                <tbody>
-                                                    <?php
-                                                    $query = mysqli_query($koneksi, "SELECT * FROM transaksi ");
-                                                    while($data = mysqli_fetch_array($query)){
-                                                        ?>
-                                                        <tr>
-                                                            <td>
-                                                                <?php
-                                                                echo $data["TransaksiID"];
-                                                                ?>
-                                                            </td>
-                                                            <td>
-                                                                <?php
-                                                                echo $data["TanggalTransaksi"];
-                                                                ?>
-                                                            </td>
-                                                            <td>
-                                                                <?php
-                                                                echo $data["WaktuTransaksi"];
-                                                                ?>
-                                                            </td>
-                                                            <td>
-                                                                <?php
-                                                                echo $data["KaryawanID"];
-                                                                ?>
-                                                            </td>
-                                                            <td>
-                                                                <?php
-                                                                echo $data["PelangganID"];
-                                                                ?>
-                                                            </td>
-                                                            <td>
-                                                                <?php
-                                                                echo $data["SubtotalHarga"];
-                                                                ?>
-                                                            </td>
-                                                            <td>
-                                                                <?php
-                                                                echo $data["DiskonID"];
-                                                                ?>
-                                                            </td>
-                                                            <td>
-                                                                <?php
-                                                                echo $data["TotalHarga"];
-                                                                ?>
-                                                            </td>
-                                                            <td>
-                                                                <?php
-                                                                echo $data["GetPoint"];
-                                                                ?>
-                                                            </td>
-                                                            <td>
-                                                                <?php
-                                                                echo $data["RedeemPoint"];
-                                                                ?>
-                                                            </td>
-                                                            <td>
-                                                                <?php
-                                                                echo $data["PembayaranID"];
-                                                                ?>
-                                                            </td>
-                                                        </tr>
-                                                    <?php
-                                                } 
-                                                ?>
-                                                    
-                                                                                                 
-                                                </tbody>
-                                            </table> <!--end table-->                                               
-                                        </div><!--end /div-->
-                                    </div><!--end card-body-->
-                                </div><!--end card-->
-                            </div><!--end col-->
-                        </div><!--end row-->
-
-                        <div class="row">
+<!-- ===================================================================================== top================================================ -->
+                        <div class="row">                     
                             <div class="col-lg-4">
                                 <div class="card overflow-hidden">
                                     <div class="card-body bg-gradient1">
@@ -409,49 +207,51 @@ session_start();
                                             <div class="card-icon">
                                                 <i class="far fa-user"></i>
                                             </div>
-                                            <h2 class="font-weight-bold text-white">10</h2>
-                                            <p class="text-white mb-0 font-16">Produk Top Bulan ini</p>                                            
+                                            <h2 class="font-weight-bold text-white"><?php
+                                            $hotproduk = mysqli_query($koneksi, "SELECT SUM(Jumlah) as totaljumlah FROM `detailtransaksi` GROUP BY ProdukID");
+                                            $data =  mysqli_num_rows($hotproduk);
+                                            echo $data;
+                                            ?></h2>
+                                            <p class="text-white mb-0 font-16">Produk Top</p>                                            
                                         </div>
                                     </div>
-                                    <div class="card-body dash-info-carousel">                                        
+                                                                  
+                                    <div id="carouselExampleIndicators" class="card-body dash-info-carousel" >   <!--carousel-->
+                                                                         
                                         <div id="carousel_best_saler" class="carousel slide" data-ride="carousel">
+                                            <ol class="carousel-indicators">
+                                                <?php
+                                                $result = mysqli_query($koneksi,"SELECT detailtransaksi.ProdukID, GambarProduk,NamaProduk, SUM(Jumlah) as totaljumlah,(SUM(Jumlah) * harga) as totalharga FROM detailtransaksi inner join produk on detailtransaksi.ProdukID = produk.ProdukID GROUP BY NamaProduk order BY totaljumlah DESC");
+                                                 
+                                                $indicator_index = 0;
+                                                while ($row = mysqli_fetch_assoc($result)) {
+                                                    $active_class = ($indicator_index == 0) ? 'active' : '';
+                                                    echo '<li data-target="#carouselExampleIndicators" data-slide-to="' . $indicator_index . '" class="' . $active_class . '"></li>';
+                                                    $indicator_index++;
+                                                }
+                                                ?>
+                                            </ol>
                                             <div class="carousel-inner">
-                                                <div class="carousel-item active">
-                                                    <div class="text-center">
-                                                        <img src="assets/images/users/user-4.jpg" alt="user" class="rounded-circle thumb-xl img-thumbnail mb-1">
-                                                        <h5>Nancy Flanary</h5>
-                                                        <p class="font-12 text-muted"><i class="fas fa-globe mr-2"></i>USA Dealer</p>
-                                                        <p class="mb-0 text-muted">Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a piece of classical Latin.</p>
-                                                        <div class="mt-2 align-item-center">
-                                                            <h5 class="font-20 d-inline-block mb-0 mr-3 align-self-center">$34800.00</h5>
-                                                            <a class="btn btn-sm btn-primary text-light mb-2"><i class="mdi mdi-email-outline mr-1"></i>Message</a>
-                                                        </div>
+                                            <?php
+                                            $item_index = 0;
+                                            mysqli_data_seek($result,0);
+                                            while ($data = mysqli_fetch_assoc($result))
+                                            {?>  
+                                                
+                                                <div class="carousel-item <?php echo ($item_index == 0) ? 'active' : ''; ?>">
+                                                <div class="text-center">
+                                                    <img src="assets/images/products/<?php echo $data['GambarProduk'] ?>" alt="user" class="rounded-circle thumb-xl img-thumbnail mb-1">
+                                                    <h5><?php echo $data['NamaProduk']?></h5>
+                                                    <p class="mb-0 font-20 text-success">Rp<?php echo $data["totalharga"]?> Terjual</p>
+                                                    <div class="mt-2 align-item-center">
+                                                        <h5 class=" font-20 d-inline-block mb-0 mr-3 align-self-center text-success"><?php echo $data['totaljumlah']?> Produk Terjual</h5>
                                                     </div>
                                                 </div>
-                                                <div class="carousel-item">
-                                                    <div class="text-center">
-                                                        <img src="assets/images/users/user-2.jpg" alt="user" class="rounded-circle thumb-xl img-thumbnail mb-1">
-                                                        <h5>Donald Gardner</h5>
-                                                        <p class="font-12 text-muted"><i class="fas fa-globe mr-2"></i>Russia Dealer</p>
-                                                        <p class="mb-0 text-muted">Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a piece of classical Latin.</p>
-                                                        <div class="mt-2 align-item-center">
-                                                            <h5 class="font-20 d-inline-block mb-0 mr-3 align-self-center">$31200.00</h5>
-                                                            <a class="btn btn-sm btn-primary text-light mb-2"><i class="mdi mdi-email-outline mr-1"></i>Message</a>
-                                                        </div>
-                                                    </div>
                                                 </div>
-                                                <div class="carousel-item">
-                                                    <div class="text-center">
-                                                        <img src="assets/images/users/user-1.jpg" alt="user" class="rounded-circle thumb-xl img-thumbnail mb-1">
-                                                        <h5>Matt Rosales</h5>
-                                                        <p class="font-12 text-muted"><i class="fas fa-globe mr-2"></i>Spain Dealer</p>
-                                                        <p class="mb-0 text-muted">Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a piece of classical Latin.</p>
-                                                        <div class="mt-2 align-item-center">
-                                                            <h5 class="font-20 d-inline-block mb-0 mr-3 align-self-center">$29200.00</h5>
-                                                            <a class="btn btn-sm btn-primary text-light mb-2"><i class="mdi mdi-email-outline mr-1"></i>Message</a>
-                                                        </div>
-                                                    </div>
-                                                </div>
+                                                <?php 
+                                                $item_index++; ?>                                              
+                                                 
+                                                <?php } ?>     
                                             </div>
                                             <a class="carousel-control-prev" href="#carousel_best_saler" role="button" data-slide="prev">
                                             <span class="carousel-control-prev-icon" aria-hidden="true"></span>
@@ -462,7 +262,9 @@ session_start();
                                             <span class="sr-only">Next</span>
                                             </a>
                                         </div>
-                                    </div><!--end card-body-->
+                                    </div>
+                                    <!--end card-body-->
+                                    
                                 </div><!--end card-->
                             </div><!--end col-->
 
@@ -473,90 +275,62 @@ session_start();
                                             <div class="card-icon">
                                                 <i class="far fa-smile"></i>
                                             </div>
-                                            <h2 class="font-weight-bold text-white">58</h2>
-                                            <p class="text-white mb-0 font-16">Produk Terbaru</p>                                            
+                                            <h2 class="font-weight-bold text-white"><?php
+                                            $produkterbaru = mysqli_query($koneksi, "SELECT * FROM produksi inner join produk on produksi.ProdukID = produk.ProdukID WHERE MONTH(TanggalProduksi) = MONTH(CURRENT_DATE) AND YEAR(TanggalProduksi) = YEAR(CURRENT_DATE)");
+                                            $data = mysqli_num_rows($produkterbaru);
+                                            echo $data;
+                                            ?></h2>
+                                            <p class="text-white mb-0 font-16">Produk Terbaru Bulan Ini</p>                                             
                                         </div>
                                     </div><!--end card-body-->
-                                    <div class="card-body dash-info-carousel">                                        
-                                        <div id="carousel_review" class="carousel slide" data-ride="carousel">
+                                                          
+                                    <div id="carouselExampleIndicators" class="card-body dash-info-carousel" ><!--carousel2-->
+                                                                         
+                                        <div id="carousel_best_saler2" class="carousel slide" data-ride="carousel">
+                                            <ol class="carousel-indicators">
+                                                <?php
+                                                $result = mysqli_query($koneksi, "SELECT * FROM produksi inner join produk on produksi.ProdukID = produk.ProdukID WHERE MONTH(TanggalProduksi) = MONTH(CURRENT_DATE) AND YEAR(TanggalProduksi) = YEAR(CURRENT_DATE)");                                                 
+                                                $indicator_index = 0;
+                                                while ($row = mysqli_fetch_assoc($result)) {
+                                                    $active_class = ($indicator_index == 0) ? 'active' : '';
+                                                    echo '<li data-target="#carouselExampleIndicators" data-slide-to="' . $indicator_index . '" class="' . $active_class . '"></li>';
+                                                    $indicator_index++;
+                                                }
+                                                ?>
+                                            </ol>
                                             <div class="carousel-inner">
-                                                <div class="carousel-item active">
-                                                    <div class="media">
-                                                        <img src="assets/images/flags/us_flag.jpg" class="mr-2 thumb-xs rounded-circle" alt="...">
-                                                        <div class="media-body align-self-center">                                                                                                                       
-                                                            <h6 class="m-0">USA Store</h6>
-                                                        </div>
-                                                    </div>
-                                                    <div class="text-center">
-                                                        <p class="review-data mb-0">4.8<span>/ 5.0</span></p>
-                                                        <p class="px-4 py-1 bg-soft-success d-inline-block rounded">Very Good</p>
-                                                        <ul class="list-inline mb-1">
-                                                            <li class="list-inline-item mr-0"><i class="mdi mdi-star text-warning font-16"></i></li>
-                                                            <li class="list-inline-item mr-0"><i class="mdi mdi-star text-warning font-16"></i></li>
-                                                            <li class="list-inline-item mr-0"><i class="mdi mdi-star text-warning font-16"></i></li>
-                                                            <li class="list-inline-item mr-0"><i class="mdi mdi-star text-warning font-16"></i></li>
-                                                            <li class="list-inline-item mr-0"><i class="mdi mdi-star text-warning font-16"></i></li>
-                                                        </ul>
-                                                        <p class="mb-1 text-muted">There are many variations of passages of Lorem Ipsum available, 
-                                                            but the majority have suffered alteration in some form, by injected humour, or randomised.
-                                                        </p>
+                                            <?php
+                                            $item_index = 0;
+                                            mysqli_data_seek($result,0);
+                                            while ($data = mysqli_fetch_assoc($result))
+                                            {?>  
+                                                
+                                                <div class="carousel-item <?php echo ($item_index == 0) ? 'active' : ''; ?>">
+                                                <div class="text-center">
+                                                    <img src="assets/images/products/<?php echo $data['GambarProduk'] ?>" alt="user" class="rounded-circle thumb-xl img-thumbnail mb-1">
+                                                    <h5><?php echo $data['NamaProduk']?></h5>
+                                                    <p class="mb-0 font-20 text-warning">Harga Rp<?php echo $data["HargaProduksi"]?></p>
+                                                    <div class="mt-2 align-item-center">
+                                                        <p class="mb-1 text-muted"><?php echo $data['Deskripsi']?></p>
                                                     </div>
                                                 </div>
-                                                <div class="carousel-item">
-                                                    <div class="media">
-                                                        <img src="assets/images/flags/spain_flag.jpg" class="mr-2 thumb-xs rounded-circle" alt="...">
-                                                        <div class="media-body align-self-center">                                                                                                                       
-                                                            <h6 class="m-0">Spain Store</h6>
-                                                        </div>
-                                                    </div>
-                                                    <div class="text-center">
-                                                        <p class="review-data mb-0">4.6<span>/ 5.0</span></p>
-                                                        <p class="px-4 py-1 bg-soft-success d-inline-block rounded">Very Good</p>
-                                                        <ul class="list-inline mb-1">
-                                                            <li class="list-inline-item mr-0"><i class="mdi mdi-star text-warning font-16"></i></li>
-                                                            <li class="list-inline-item mr-0"><i class="mdi mdi-star text-warning font-16"></i></li>
-                                                            <li class="list-inline-item mr-0"><i class="mdi mdi-star text-warning font-16"></i></li>
-                                                            <li class="list-inline-item mr-0"><i class="mdi mdi-star text-warning font-16"></i></li>
-                                                            <li class="list-inline-item mr-0"><i class="mdi mdi-star text-warning font-16"></i></li>
-                                                        </ul>
-                                                        <p class="mb-1 text-muted">There are many variations of passages of Lorem Ipsum available, 
-                                                            but the majority have suffered alteration in some form, by injected humour, or randomised.
-                                                        </p>
-                                                    </div>
                                                 </div>
-                                                <div class="carousel-item">
-                                                    <div class="media">
-                                                        <img src="assets/images/flags/russia_flag.jpg" class="mr-2 thumb-xs rounded-circle" alt="...">
-                                                        <div class="media-body align-self-center">                                                                                                                       
-                                                            <h6 class="m-0">Russia Store</h6>
-                                                        </div>
-                                                    </div>
-                                                    <div class="text-center">
-                                                        <p class="review-data mb-0">5.0<span>/ 5.0</span></p>
-                                                        <p class="px-4 py-1 bg-soft-success d-inline-block rounded">Exellent</p>
-                                                        <ul class="list-inline mb-1">
-                                                            <li class="list-inline-item mr-0"><i class="mdi mdi-star text-warning font-16"></i></li>
-                                                            <li class="list-inline-item mr-0"><i class="mdi mdi-star text-warning font-16"></i></li>
-                                                            <li class="list-inline-item mr-0"><i class="mdi mdi-star text-warning font-16"></i></li>
-                                                            <li class="list-inline-item mr-0"><i class="mdi mdi-star text-warning font-16"></i></li>
-                                                            <li class="list-inline-item mr-0"><i class="mdi mdi-star text-warning font-16"></i></li>
-                                                        </ul>
-                                                        <p class="mb-1 text-muted">There are many variations of passages of Lorem Ipsum available, 
-                                                            but the majority have suffered alteration in some form, by injected humour, or randomised.
-                                                        </p>
-                                                    </div>
-                                                </div>
+                                                <?php 
+                                                $item_index++; ?>                                              
+                                                 
+                                                <?php } ?>     
                                             </div>
-                                            <a class="carousel-control-prev" href="#carousel_review" role="button" data-slide="prev">
+                                            <a class="carousel-control-prev" href="#carousel_best_saler2" role="button" data-slide="prev">
                                             <span class="carousel-control-prev-icon" aria-hidden="true"></span>
                                             <span class="sr-only">Previous</span>
                                             </a>
-                                            <a class="carousel-control-next" href="#carousel_review" role="button" data-slide="next">
+                                            <a class="carousel-control-next" href="#carousel_best_saler2" role="button" data-slide="next">
                                             <span class="carousel-control-next-icon" aria-hidden="true"></span>
                                             <span class="sr-only">Next</span>
                                             </a>
                                         </div>
-                                    </div><!--end card-body-->
+                                    </div>
+                                    
                                 </div><!--end card-->
                             </div><!--end col-->
 
@@ -567,19 +341,128 @@ session_start();
                                             <div class="card-icon">
                                                 <i class="fas fa-coins"></i>
                                             </div>
-                                            <h2 class="font-weight-bold text-white">$85750.00</h2>
-                                            <p class="text-white mb-0 font-16">Total payments</p>                                            
+                                            <h2 class="font-weight-bold text-white">Rp<?php
+                                                $queryharga = mysqli_query($koneksi, "select SUM(TotalHarga) as totalharga from transaksi ");
+                                                $data = mysqli_fetch_array($queryharga);
+                                                echo $data['totalharga']?></h2>
+                                            <p class="text-white mb-0 font-16">Total Pembayaran</p>                                            
                                         </div>
                                     </div><!--end card-body-->
                                     <div class="card-body">
                                         <div class="">
-                                            <div id="d1_payment" class="apex-charts"></div>
+                                            <h2>
+                                                <?php
+                                                    $querypembayaran = mysqli_query($koneksi,"SELECT COUNT(PembayaranID) as banyakbayar FROM transaksi WHERE PembayaranID = 2");
+                                                    $data = mysqli_fetch_array($querypembayaran);
+                                                    echo $data['banyakbayar'];
+                                                    ?>
+                                            </h2>    
+                                            <h5 class="text-success">
+                                                Lewat Cash <i class="mdi mdi-cash  text-success font-20"></i>
+                                            </h5>
+                                            <h2>
+                                                <?php
+                                                    $querypembayaran = mysqli_query($koneksi,"SELECT COUNT(PembayaranID) as banyakbayar FROM transaksi WHERE PembayaranID = 1");
+                                                    $data = mysqli_fetch_array($querypembayaran);
+                                                    echo $data['banyakbayar'];
+                                                    ?>
+                                            </h2>
+                                            <h5 class="text-danger">
+                                                Lewat Credit-Card <i class="mdi mdi-credit-card   text-danger font-20"></i>
+                                            </h5>
                                         </div> 
                                     </div><!--end card-body-->
                                 </div><!--end card-->
                             </div><!--end col-->
                         </div><!--end row-->
                     </div><!-- container -->
+                 
+              
+        <!-- =================================== topp start============================================== -->
+                        <!-- Page Content-->
+                    <div class="page-content mt-2">
+                        <div class="container-fluid"> 
+                            <div class="row">
+                                <div class="col-12">
+                                    <div class="card">
+                                        <div class="card-body">
+                                            <div class="row">
+                                                <ul class="col container-filter categories-filter mb-0" id="filter">
+                                                    <li><a class="categories active" data-filter=".roti">ROTI</a></li>
+                                                    <li><a class="categories" data-filter=".kue">KUE</a></li>
+                                                    <li><a class="categories" data-filter=".cookies">COOKIES</a></li>
+                                                </ul>
+                                            </div><!-- End portfolio  -->
+                                        </div><!--end card-body-->
+                                    </div><!--end card-->
+                                
+                                    <div class="card">
+                                        <div class="card-body">
+                                            <div class="row container-grid nf-col-3 roti projects-wrapper">
+                                                <?php 
+                                                $querygaler =mysqli_query($koneksi,"SELECT GambarProduk,NamaProduk From produk Where KategoriID = 1 LIMIT 6");
+                                                while($galery = mysqli_fetch_array($querygaler)){
+                                                ?>
+                                                 <div class="col-lg-4 col-md-6 p-0 nf-item roti spacing">
+                                                    <div class="">
+                                                        <a class="">
+                                                            <img class="item-container" src="assets/images/products/<?php echo $galery['GambarProduk'];?>" height="300"  />
+                                                            <div class="item-mask">
+                                                                <div class="item-caption">
+                                                                    <h5 class="text-light"><?php echo$galery['NamaProduk'];?> </h5>
+                                                                    <p class="text-light">Photo</p>
+                                                                </div>
+                                                            </div>
+                                                        </a>
+                                                    </div><!--end item-box-->
+                                                </div><!--end col-->
+                                                 <?php } ?>
+
+                                                <?php 
+                                                $querygaler =mysqli_query($koneksi,"SELECT GambarProduk,NamaProduk From produk Where KategoriID = 2 LIMIT 6");
+                                                while($galery = mysqli_fetch_array($querygaler)){
+                                                ?>    
+                                                <div class="col-lg-4 col-md-6 p-0 nf-item kue spacing">
+                                                    <div >
+                                                        <a >
+                                                            <img class="item-container" src="assets/images/products/<?php echo $galery['GambarProduk'];?>"/>
+                                                            <div class="item-mask">
+                                                                <div class="item-caption">
+                                                                    <h5 class="text-light"><?php echo$galery['NamaProduk'];?> </h5>
+                                                                    <p class="text-light">Photo</p>
+                                                                </div>
+                                                            </div>
+                                                        </a>
+                                                    </div><!--end item-box-->
+                                                </div><!--end col-->
+                                                 <?php } ?>
+
+                                                <?php 
+                                                $querygaler =mysqli_query($koneksi,"SELECT GambarProduk,NamaProduk From produk Where KategoriID = 3 LIMIT 6");
+                                                while($galery = mysqli_fetch_array($querygaler)){
+                                                ?>    
+                                                <div class="col-lg-4 col-md-6 p-0 nf-item cookies spacing">
+                                                    <div class="">
+                                                        <a>
+                                                            <img class="item-container" src="assets/images/products/<?php echo $galery['GambarProduk'];?>" />
+                                                            <div class="item-mask">
+                                                                <div class="item-caption">
+                                                                    <h5 class="text-light"><?php echo$galery['NamaProduk'];?></h5>
+                                                                    <p class="text-light">Photo</p>
+                                                                </div>
+                                                            </div>
+                                                        </a>
+                                                    </div><!--end item-box-->
+                                                </div><!--end col-->
+                                                <?php } ?>
+                                            </div><!--end row-->
+                                        </div><!--end card-body-->
+                                    </div><!--end card-->
+                                </div><!--end col-->
+                            </div><!--end row-->          
+                        </div><!-- container -->
+    <!-- =================================== end carousel =================================================== -->
+                        
 
                     <?php
                     include 'footer.php';
@@ -604,6 +487,64 @@ session_start();
 
         <!-- App js -->
         <script src="assets/js/app.js"></script>
+
+        <!-- jQuery  -->
+        <script src="assets/js/jquery.min.js"></script>
+        <script src="assets/js/bootstrap.bundle.min.js"></script>
+        <script src="assets/js/metisMenu.min.js"></script>
+        <script src="assets/js/waves.min.js"></script>
+        <script src="assets/js/jquery.slimscroll.min.js"></script>
+
+        <script src="assets/plugins/filter/isotope.pkgd.min.js"></script>
+        <script src="assets/plugins/filter/masonry.pkgd.min.js"></script>
+        <script src="assets/plugins/filter/jquery.magnific-popup.min.js"></script>
+
+        <!-- App js -->
+        <script src="assets/js/app.js"></script>
+        <script>
+             $(window).on('load', function() {
+                // Filter 
+                //PORTFOLIO FILTER 
+                var $container = $('.projects-wrapper');
+                var $filter = $('#filter');
+                // Initialize isotope 
+                $container.isotope({
+                    filter: '.roti',
+                    layoutMode: 'masonry',
+                    animationOptions: {
+                        duration: 750,
+                        easing: 'linear'
+                    }
+                });
+                // Filter items when filter link is clicked
+                $filter.find('a').click(function() {
+                    var selector = $(this).attr('data-filter');
+                    $filter.find('a').removeClass('active');
+                    $(this).addClass('active');
+                    $container.isotope({
+                        filter: selector,
+                        animationOptions: {
+                            animationDuration: 750,
+                            easing: 'linear',
+                            queue: false,
+                        }
+                    });
+                    return false;
+                });
+                /*END*/
+            });
+            $('.mfp-image').magnificPopup({
+                type: 'image',
+                closeOnContentClick: true,
+                mainClass: 'mfp-fade',
+                gallery: {
+                    enabled: true,
+                    navigateByImgClick: true,
+                    preload: [0, 1]
+                        // Will preload 0 - before current, and 1 after the current image 
+                }
+            });
+        </script>
 
     </body>
 </html>

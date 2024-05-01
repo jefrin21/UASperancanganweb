@@ -41,7 +41,7 @@ if(isset($_POST['invoice'])){
             foreach($stokproduk as $stok){
                 $iddstok = $stok['id'];
                  $jumstok = $_SESSION['jumstok'];
-                 if($jumstok >  $sisamystok){
+                 if($jumstok == 0){
                     echo "<script>alert('Jumlah Produk Berlebihan');</script>";
                     echo "<script>window.location.href='app-ecommerce-product.php';</script>";
                  }else{
@@ -110,10 +110,10 @@ if(isset($_POST['creditbut'])){
             $updatepoint = mysqli_query($koneksi,"UPDATE pelanggan SET Nama = Nama, Email = Email,Telepon=Telepon,Alamat=Alamat,TanggalLahir=TanggalLahir,Gender=Gender,Points=Points+'$getpoint' where PelangganID ='$idcust'");
 
             $stokproduk = isset($_SESSION['shop'])? $_SESSION['shop'] : array();
-            foreach($$stokproduk as $stok){
+            foreach($stokproduk as $stok){
                 $iddstok = $stok['id'];
                 $jumstok = $_SESSION['jumstok'];
-                 if($jumstok > $sisamystok){
+                 if($jumstok == 0){
                     echo "<script>alert('Jumlah Produk Berlebihan');</script>";
                     echo "<script>window.location.href='app-ecommerce-product.php';</script>";
                  }else{
@@ -142,4 +142,4 @@ if(isset($_POST['creditbut'])){
 
 }
 
-?>  
+?>
