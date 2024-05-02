@@ -8,7 +8,7 @@
                         <li class="menu-title">Main</li>
 
                         <li>
-                            <a href="index.php"><i class="mdi mdi-monitor"></i><span>Dashboards</span><span class="badge badge-danger badge-pill float-right">9+</span></a>
+                            <a href="index.php"><i class="mdi mdi-monitor"></i><span>Dashboards</span></a>
                             
                         </li>
                         <li><a href="app-product-list.php"><i class="mdi mdi-clipboard-text-outline"></i><span>Product List</span></a></li>
