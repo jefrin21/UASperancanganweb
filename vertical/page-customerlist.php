@@ -178,11 +178,11 @@ include 'header.php';
                                                                                     <button class="btn btn-block btn-success my-2"><i class="fas fa-pencil-alt"></i>&nbsp;&nbsp; Ubah</button>
                                                                                 </a>
                                                                             </div>
-                                                                            <div class="col-6 border-right py-3">
-                                                                                <a href="process-customerdelete.php?id=<?php echo $data['PelangganID']; ?>">
-                                                                                    <button class="btn btn-block btn-success my-2" onclick="return confirm('Apakah Anda yakin akan menghapus data?')"><i class="fas fa-trash"></i>&nbsp;&nbsp; Hapus</button>
+                                                                            <!-- <div hidden class="col-6 border-right py-3">
+                                                                                <a hidden href="process-customerdelete.php?id=<?php echo $data['PelangganID']; ?>">
+                                                                                    <button hidden class="btn btn-block btn-success my-2" onclick="return confirm('Apakah Anda yakin akan menghapus data?')"><i class="fas fa-trash"></i>&nbsp;&nbsp; Hapus</button>
                                                                                 </a>
-                                                                            </div>
+                                                                            </div> -->
                                                                         </div><!--end row--> 
                                                                     </div><!--end card-body--> 
 
@@ -279,16 +279,16 @@ include 'header.php';
 
                                                                     <div class="card-body pb-0 px-0">
                                                                         <div class="row text-center border-top m-0">
-                                                                            <div class="col-6 border-right py-3">
+                                                                            <div class="col-12 border-right py-3">
                                                                                 <a href="page-customeredit.php?id=<?php echo $data['PelangganID']; ?>">
                                                                                     <button class="btn btn-block btn-success my-2"><i class="fas fa-pencil-alt"></i>&nbsp;&nbsp; Ubah</button>
                                                                                 </a>
                                                                             </div>
-                                                                            <div class="col-6 border-right py-3">
+                                                                            <!-- <div hidden class="col-6 border-right py-3">
                                                                                 <a href="process-customerdelete.php?id=<?php echo $data['PelangganID']; ?>">
                                                                                     <button class="btn btn-block btn-success my-2" onclick="return confirm('Apakah Anda yakin akan menghapus data?')"><i class="fas fa-trash"></i>&nbsp;&nbsp; Hapus</button>
                                                                                 </a>
-                                                                            </div>
+                                                                            </div> -->
                                                                         </div><!--end row--> 
                                                                     </div><!--end card-body--> 
 

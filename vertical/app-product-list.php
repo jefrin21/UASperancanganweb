@@ -123,13 +123,14 @@ include 'header.php';
                                                     ?>
                                                 </span></td>
                                                 <td>
-                                                <div class="btn-group">
-                                                        <a href="app-product-edit.php?id=<?php echo $data['ProdukID']; ?>"
-                                                        class="btn btn-outline-secondary btn-sm">
+                                                <div class="btn-group text-center">
+                                                        <a  href="app-product-edit.php?id=<?php echo $data['ProdukID']; ?>"
+                                                        class="btn btn-outline-secondary btn-sm text-center">
                                                             <i class="far fa-edit"></i>
                                                         </a>
-                                                     
-                                                        <a href="process-delete-product.php?id=<?php echo $data['ProdukID']; ?>"
+                                               
+                                                        
+                                                        <a hidden href="process-delete-product.php?id=<?php echo $data['ProdukID']; ?>"
                                                         onclick="return confirm('Apakah Anda yakin menghapus produk ini?')"
     
                                                         class="btn btn-outline-secondary btn-sm">
