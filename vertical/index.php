@@ -55,13 +55,14 @@
                                             <div class="col-8 align-self-center">
                                             <div class="">
                                                     <h4 class="mt-0 header-title">Total Profit</h4>
-                                                    <h2 class="mt-0 font-weight-bold text-dark">Rp<?php
+                                                    <h3 class="mt-0 font-weight-bold text-dark"><?php
                                                         $queryharga = mysqli_query($koneksi,"SELECT  SUM(TotalHarga) as profit from transaksi ");
                                                         $dataharga = mysqli_fetch_array($queryharga);
                                                         $querypengeluaran = mysqli_query($koneksi,"SELECT SUM(TotalPengeluaran) as harga from produksi ");
                                                         $datapengeluaran = mysqli_fetch_array($querypengeluaran);
-                                                        echo $dataharga['profit'] - $datapengeluaran['harga'];
-                                                    ?></h2> 
+                                                        $totalprofit = $dataharga['profit'] - $datapengeluaran['harga'];
+                                                        echo "Rp" . number_format($totalprofit,2)
+                                                    ?></h3> 
 
                                                 </div>
                                             </div><!--end col-->
@@ -83,11 +84,11 @@
                                             <div class="col-8 align-self-center">
                                                 <div class="">
                                                     <h4 class="mt-0 header-title">Total Harga Produksi</h4>
-                                                    <h2 class="mt-0 font-weight-bold text-dark">Rp<?php
+                                                    <h3 class="mt-0 font-weight-bold text-dark">Rp<?php
                                                         $query = mysqli_query($koneksi, "SELECT sum(TotalPengeluaran) as harga from produksi ");
                                                         $data = mysqli_fetch_array($query);
-                                                        echo $data['harga'];
-                                                        ?></h2> 
+                                                        echo number_format($data['harga'],2);
+                                                        ?></h3> 
                                                 </div>
                                             </div><!--end col-->
                                             <div class="col-4 align-self-center">
@@ -239,7 +240,7 @@
                                                 <div class="text-center">
                                                     <img src="assets/images/products/<?php echo $data['GambarProduk'] ?>" alt="user" class="rounded-circle thumb-xl img-thumbnail mb-1">
                                                     <h5><?php echo $data['NamaProduk']?></h5>
-                                                    <p class="mb-0 font-20 text-success">Rp<?php echo $data["totalharga"]?> Terjual</p>
+                                                    <p class="mb-0 font-20 text-success">Rp<?php echo number_format($data["totalharga"],2)?> Terjual</p>
                                                     <div class="mt-2 align-item-center">
                                                         <h5 class=" font-20 d-inline-block mb-0 mr-3 align-self-center text-success"><?php echo $data['totaljumlah']?> Produk Terjual</h5>
                                                     </div>
@@ -306,7 +307,7 @@
                                                 <div class="text-center">
                                                     <img src="assets/images/products/<?php echo $data['GambarProduk'] ?>" alt="user" class="rounded-circle thumb-xl img-thumbnail mb-1">
                                                     <h5><?php echo $data['NamaProduk']?></h5>
-                                                    <p class="mb-0 font-20 text-warning">Harga Rp<?php echo $data["HargaProduksi"]?></p>
+                                                    <p class="mb-0 font-20 text-warning">Harga Rp<?php echo number_format($data["HargaProduksi"],2)?></p>
                                                     <div class="mt-2 align-item-center">
                                                         <p class="mb-1 text-muted"><?php echo $data['Deskripsi']?></p>
                                                     </div>
@@ -341,7 +342,7 @@
                                             <h2 class="font-weight-bold text-white">Rp<?php
                                                 $queryharga = mysqli_query($koneksi, "select SUM(TotalHarga) as totalharga from transaksi ");
                                                 $data = mysqli_fetch_array($queryharga);
-                                                echo $data['totalharga']?></h2>
+                                                echo number_format($data['totalharga'],2)?></h2>
                                             <p class="text-white mb-0 font-16">Total Pembayaran</p>                                            
                                         </div>
                                     </div><!--end card-body-->

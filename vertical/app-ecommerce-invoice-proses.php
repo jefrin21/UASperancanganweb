@@ -41,7 +41,6 @@ if(isset($_POST['invoice'])){
             foreach($stokproduk as $stok){
                 $iddstok = $stok['id'];
                  $jumstok = $_SESSION['jumstok'];
-                 if($jumstok ==0){
                  if($jumstok == 0){
                     echo "<script>alert('Jumlah Produk Berlebihan');</script>";
                     echo "<script>window.location.href='app-ecommerce-product.php';</script>";
@@ -112,10 +111,8 @@ if(isset($_POST['creditbut'])){
 
             $stokproduk = isset($_SESSION['shop'])? $_SESSION['shop'] : array();
             foreach($stokproduk as $stok){
-            foreach($stokproduk as $stok){
                 $iddstok = $stok['id'];
                 $jumstok = $_SESSION['jumstok'];
-                 if($jumstok == 0){
                  if($jumstok == 0){
                     echo "<script>alert('Jumlah Produk Berlebihan');</script>";
                     echo "<script>window.location.href='app-ecommerce-product.php';</script>";
